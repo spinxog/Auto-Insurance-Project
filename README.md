@@ -23,7 +23,7 @@ Device/SDK → Secure Ingestion → Streaming ETL → Feature Store → Risk-Sco
 ### Setup
 
 ```bash
-git clone <repo>
+git clone https://github.com/spinxog/Auto-Insurance-Project.git
 cd auto-insurance-project
 python -m venv venv
 source venv/bin/activate
