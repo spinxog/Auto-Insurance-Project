@@ -1,0 +1,47 @@
+{
+  "model_details": {
+    "name": "Risk Score GBM",
+    "version": "v20251109_1",
+    "algorithm": "Gradient Boosting Machine",
+    "framework": "scikit-learn",
+    "date_created": "2025-11-10T01:46:32.334774",
+    "intended_use": "Predict driver risk score for auto insurance pricing",
+    "training_objective": "Minimize MSE on risk score prediction"
+  },
+  "training_data": {
+    "description": "Synthetic telematics data with trip-level features",
+    "size": 1000,
+    "features": [
+      "f_trip_max_speed",
+      "f_trip_avg_accel",
+      "f_trip_harsh_brake_count"
+    ],
+    "date_range": "2023-01-01 to 2024-12-31",
+    "data_source": "Simulated telematics events",
+    "preprocessing": "Feature aggregation from raw telemetry events"
+  },
+  "model_performance": {
+    "metrics": {
+      "mse": 0.25,
+      "mae": 0.45,
+      "r2_score": 0.78
+    },
+    "evaluation_dataset": "Holdout set (20% of training data)",
+    "baseline_comparison": "Improves upon simple average baseline"
+  },
+  "ethical_considerations": {
+    "fairness": "Model should not discriminate based on protected attributes",
+    "privacy": "Uses pseudonymized driver IDs and aggregated features",
+    "explainability": "SHAP values available for individual predictions",
+    "limitations": [
+      "Trained on synthetic data only",
+      "May not generalize to all driving conditions",
+      "Requires regular retraining with new data"
+    ]
+  },
+  "data_lineage": {
+    "raw_data_source": "S3://telematics-raw/",
+    "feature_store": "Redis feature store",
+    "model_artifacts": "models/riskscore/gbm/v20251109_1/"
+  }
+}

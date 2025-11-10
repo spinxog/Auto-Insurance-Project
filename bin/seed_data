@@ -1,0 +1,71 @@
+#!/bin/bash
+# Seed sample data into local infrastructure
+
+set -e
+
+echo "Seeding data..."
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Register Avro schema
+echo "Registering Avro schema..."
+python -c "
+import requests
+import json
+
+schema = open('src/ingestion/schemas/telemetry_event.avsc').read()
+data = {
+    'schema': schema,
+    'schemaType': 'AVRO',
+    'compatibility': 'BACKWARD'
+}
+
+response = requests.post('http://localhost:8081/subjects/prod.telematics.device.events.v1/versions', json=data)
+if response.status_code == 200:
+    print('Schema registered successfully')
+else:
+    print(f'Failed to register schema: {response.text}')
+"
+
+# Create MinIO buckets
+echo "Creating MinIO buckets..."
+docker run --rm --network auto-insurance-project_default \
+  minio/mc:latest \
+  alias set localminio http://minio:9000 local local123
+
+docker run --rm --network auto-insurance-project_default \
+  minio/mc:latest \
+  mb localminio/telematics-raw --ignore-existing
+
+docker run --rm --network auto-insurance-project_default \
+  minio/mc:latest \
+  mb localminio/feast-offline --ignore-existing
+
+# Seed telemetry events to Kafka
+echo "Seeding telemetry events to Kafka..."
+python -c "
+import json
+from kafka import KafkaProducer
+import time
+
+producer = KafkaProducer(
+    bootstrap_servers=['localhost:9094'],
+    value_serializer=lambda v: json.dumps(v).encode('utf-8')
+)
+
+with open('data/samples/poc_telemetry.jsonl', 'r') as f:
+    for line in f:
+        event = json.loads(line.strip())
+        producer.send('prod.telematics.device.events.v1', event)
+        time.sleep(0.1)  # Simulate real-time
+
+producer.flush()
+print('Telemetry events seeded to Kafka')
+"
+
+# Run data quality checks
+echo "Running data quality checks..."
+python src/dq/local_checks.py
+
+echo "Data seeding complete!"

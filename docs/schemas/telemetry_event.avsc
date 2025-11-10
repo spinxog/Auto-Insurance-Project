@@ -1,0 +1,28 @@
+{
+  "type": "record",
+  "name": "TelemetryEvent",
+  "fields": [
+    {"name": "device_id", "type": "string"},
+    {"name": "policy_id", "type": ["null", "string"]},
+    {"name": "trip_id", "type": "string"},
+    {"name": "ts", "type": "string"},
+    {"name": "event_type", "type": {"type": "enum", "name": "EventType", "symbols": ["heartbeat", "sample", "start_trip", "end_trip", "alert"]}},
+    {"name": "lat", "type": ["null", "float"]},
+    {"name": "lon", "type": ["null", "float"]},
+    {"name": "gps_accuracy_m", "type": ["null", "float"]},
+    {"name": "speed_kmh", "type": ["null", "float"]},
+    {"name": "accel_x_m_s2", "type": ["null", "float"]},
+    {"name": "accel_y_m_s2", "type": ["null", "float"]},
+    {"name": "accel_z_m_s2", "type": ["null", "float"]},
+    {"name": "brake_strength", "type": ["null", "float"]},
+    {"name": "steering_angle_deg", "type": ["null", "float"]},
+    {"name": "heading_deg", "type": ["null", "float"]},
+    {"name": "odometer_km", "type": ["null", "float"]},
+    {"name": "engine_rpm", "type": ["null", "int"]},
+    {"name": "battery_level_pct", "type": ["null", "float"]},
+    {"name": "sample_rate_hz", "type": ["null", "float"]},
+    {"name": "provider", "type": "string"},
+    {"name": "hashed_driver_id", "type": ["null", "string"]},
+    {"name": "location_precision", "type": {"type": "enum", "name": "LocationPrecision", "symbols": ["exact", "coarse", "aggregated"]}}
+  ]
+}

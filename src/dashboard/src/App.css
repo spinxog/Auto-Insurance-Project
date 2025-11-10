@@ -1,0 +1,64 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+}
+
+.App-main {
+  padding: 20px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.score-section {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.trips-section {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.privacy-section {
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.loading, .error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+}
+
+.error {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .score-section, .trips-section {
+    grid-column: 1;
+  }
+
+  .privacy-section {
+    grid-row: 3;
+  }
+}

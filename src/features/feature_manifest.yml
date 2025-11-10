@@ -1,0 +1,68 @@
+# Feature Manifest - Canonical feature definitions
+
+features:
+  # Trip-level features
+  - name: f_trip_max_speed
+    type: float
+    description: Maximum speed during trip
+    aggregation: max
+    window: trip
+    units: km/h
+
+  - name: f_trip_avg_speed
+    type: float
+    description: Average speed during trip
+    aggregation: avg
+    window: trip
+    units: km/h
+
+  - name: f_trip_harsh_brake_count
+    type: int
+    description: Number of harsh braking events (>2.5 m/s² deceleration)
+    aggregation: count
+    window: trip
+    units: count
+
+  - name: f_trip_night_driving_minutes
+    type: int
+    description: Minutes driven between 22:00-05:00
+    aggregation: sum
+    window: trip
+    units: minutes
+
+  # Policy-level features (rolling windows)
+  - name: f_policy_monthly_miles_30d
+    type: float
+    description: Total miles driven in last 30 days
+    aggregation: sum
+    window: 30d
+    units: miles
+
+  - name: f_policy_percent_city_driving
+    type: float
+    description: Percentage of driving in city areas (<50 km/h avg speed)
+    aggregation: percentage
+    window: 30d
+    units: percent
+
+  - name: f_policy_percent_highway
+    type: float
+    description: Percentage of driving on highways (>80 km/h avg speed)
+    aggregation: percentage
+    window: 30d
+    units: percent
+
+  # Contextual features
+  - name: f_trip_weather_rain_pct
+    type: float
+    description: Percentage of trip in rainy conditions
+    aggregation: percentage
+    window: trip
+    units: percent
+
+  - name: f_policy_local_accident_density
+    type: float
+    description: Accident density in driver's primary area
+    aggregation: avg
+    window: 90d
+    units: accidents/km²

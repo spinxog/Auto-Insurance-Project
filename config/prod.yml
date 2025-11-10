@@ -1,0 +1,38 @@
+CONFIG_ENV: prod
+
+# Ingestion
+INGESTION_BIND: 0.0.0.0
+KAFKA_BOOTSTRAP_SERVERS: b-1.prod.kafka.amazonaws.com:9092,b-2.prod.kafka.amazonaws.com:9092
+SCHEMA_REGISTRY_URL: https://schema-registry.prod.example.com
+S3_ENDPOINT: ""  # Use AWS default
+S3_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+S3_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+
+# Feature Store
+FEATURESTORE_REDIS: feast-redis.prod.example.com:6379
+FEAST_REDIS_HOST: feast-redis.prod.example.com
+
+# Secrets
+VAULT_ADDR: https://vault-prod.example.com
+VAULT_TOKEN: ${VAULT_TOKEN}
+
+# KMS
+KMS_ENDPOINT: ""  # Use AWS default
+KMS_KEY_ID: alias/telematics-key
+
+# Model Serving
+MODEL_SERVER_HOST: 0.0.0.0
+MODEL_SERVER_PORT: 8000
+
+# Policy Admin
+POLICY_ADMIN_URL: https://policy-admin.prod.example.com
+
+# Database
+POSTGRES_HOST: telematics-db.prod.example.com
+POSTGRES_DB: telematics
+POSTGRES_USER: ${DB_USER}
+POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+# Logging
+LOG_LEVEL: INFO
+LOG_FILE: /var/log/telematics/app.log

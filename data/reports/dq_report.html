@@ -1,0 +1,53 @@
+
+    <html>
+    <head>
+        <title>Data Quality Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            h1 { color: #333; }
+            h2 { color: #666; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            .pass { color: green; }
+            .fail { color: red; }
+        </style>
+    </head>
+    <body>
+        <h1>Data Quality Report</h1>
+        <p>Generated on: 2025-11-09 18:56:00</p>
+
+        <h2>Summary</h2>
+        <p>Total rows: 3</p>
+
+        <h2>Null Rates</h2>
+        <table>
+            <tr><th>Field</th><th>Null Rate</th></tr>
+            <tr><td>device_id</td><td>0.00%</td></tr><tr><td>policy_id</td><td>0.00%</td></tr><tr><td>trip_id</td><td>0.00%</td></tr><tr><td>ts</td><td>0.00%</td></tr><tr><td>event_type</td><td>0.00%</td></tr><tr><td>lat</td><td>0.00%</td></tr><tr><td>lon</td><td>0.00%</td></tr><tr><td>gps_accuracy_m</td><td>0.00%</td></tr><tr><td>speed_kmh</td><td>0.00%</td></tr><tr><td>accel_x_m_s2</td><td>0.00%</td></tr><tr><td>accel_y_m_s2</td><td>0.00%</td></tr><tr><td>brake_strength</td><td>33.33%</td></tr><tr><td>odometer_km</td><td>0.00%</td></tr><tr><td>provider</td><td>0.00%</td></tr>
+        </table>
+
+        <h2>Speed Range Check</h2>
+        <p>Min: 45.2, Max: 50.1</p>
+        <p class="pass">
+            Out of range (0-200 km/h): 0
+        </p>
+
+        <h2>GPS Accuracy</h2>
+        <p>Average accuracy: 5.0m</p>
+        <p>High accuracy (<10m): 3</p>
+
+        <h2>Event Distribution</h2>
+        <table>
+            <tr><th>Event Type</th><th>Count</th></tr>
+            <tr><td>sample</td><td>2</td></tr><tr><td>alert</td><td>1</td></tr>
+        </table>
+
+        <h2>Schema Compliance</h2>
+        <p>Missing required fields: ['location_precision']</p>
+        <table>
+            <tr><th>Field</th><th>Null Count</th></tr>
+            <tr><td>device_id</td><td>0</td></tr><tr><td>trip_id</td><td>0</td></tr><tr><td>ts</td><td>0</td></tr><tr><td>event_type</td><td>0</td></tr><tr><td>provider</td><td>0</td></tr>
+        </table>
+    </body>
+    </html>
+    
