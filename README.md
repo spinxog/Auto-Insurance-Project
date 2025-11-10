@@ -61,7 +61,6 @@ models/     # Trained model artifacts
 data/       # Sample telemetry and features
 docs/       # Documentation & diagrams
 bin/        # Executable scripts
-tests/      # Unit & integration tests
 infra/      # Local Docker setup
 ```
 
