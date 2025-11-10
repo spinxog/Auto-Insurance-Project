@@ -90,7 +90,7 @@ Copyright (c) 2025 Pradip Debnath
 
 All rights reserved.
 
-This repository and its contents are provided solely for the purpose of evaluating [Your Name]’s take-home assessment submission.
+This repository and its contents are provided solely for the purpose of evaluating the take-home assessment submission.
 
 No other use, reproduction, distribution, modification, or commercial use is permitted without explicit written permission from the author.
 
